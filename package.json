@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "webpack": "webpack -w",
-    "devStart": "webpack -w & node server.js",
+    "build": "webpack -w",
     "test": "karma start"
   },
   "repository": {
@@ -41,11 +40,13 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.2.0",
     "karma-mocha-reporter": "^2.2.0",
+    "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.1.0",
     "node-sass": "^3.10.1",
     "node-uuid": "^1.4.7",
+    "phantomjs-prebuilt": "^2.1.13",
     "react-addons-test-utils": "^15.3.2",
     "sass-loader": "^4.0.2",
     "script-loader": "^0.7.0",

@@ -2,12 +2,12 @@ var webpackConfig = require('./webpack.config');
 
 module.exports = function(config) {
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: true,
     frameworks: ['mocha'],
     files: [
-      'app/tests/**/*.test.jsx',
       'node_modules/jquery/dist/jquery.min.js',
+      'app/tests/**/*.test.jsx',
       'node_modules/foundation-sites/dist/foundation.min.js'
     ],
     preprocessors: {'app/tests/**/*.test.jsx': ['webpack', 'sourcemap']},
@@ -18,6 +18,9 @@ module.exports = function(config) {
       }
     },
     webpack: webpackConfig,
-    webpackServer: {noInfo: true}
+    webpackServer: {noInfo: true},
+    phantomjsLauncher: {
+      exitOnResourceError: true
+    }
   });
 };

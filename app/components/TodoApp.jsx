@@ -14,7 +14,7 @@ class TodoApp extends React.Component {
     this.state = {
       showCompleted: false,
       searchText: '',
-      todos: TodoAPI.getTodos();
+      todos: TodoAPI.getTodos()
     };
     this.addTodoListener = this.handleAddTodo.bind(this);
     this.searchListener = this.handleSearch.bind(this);
