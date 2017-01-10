@@ -13,14 +13,22 @@ describe('TodoList', ()=>{
   });
 
   it('should render one Todo for each todo', () => {
-    var todos = [
+    let todos = [
       {id:1, text:'test 1'},
       {id:2, text:'test 2'}
     ];
 
-    var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
-    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
+    let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    let todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
 
     expect(todosComponents.length).toBe(todos.length);
+  });
+
+  it('should render empty message if no todos', () => {
+    let todos = [];
+
+    let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    let $el = $(ReactDom.findDOMNode(todoList));
+    expect($el.find('.container__message').length).toBe(1);
   });
 });

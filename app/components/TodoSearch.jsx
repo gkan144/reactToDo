@@ -16,7 +16,7 @@ class TodoSearch extends React.Component {
   }
 
   render() {
-    return <div>
+    return <div className="container__header">
       <div>
         <input type="search" ref="searchText" placeholder="Seach todos" onChange={this.onChangeListener}/>
       </div>
