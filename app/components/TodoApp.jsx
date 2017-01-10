@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'node-uuid';
+import moment from 'moment';
 
 import TodoAPI from '../api/TodoAPI';
 
@@ -29,7 +30,13 @@ class TodoApp extends React.Component {
     this.setState({
       todos:[
         ...this.state.todos,
-        {id: uuid(), text: text, completed: false}
+        {
+          id: uuid(),
+          text: text,
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: null
+        }
       ]
     });
   }
@@ -41,7 +48,10 @@ class TodoApp extends React.Component {
   }
   handleToggle(id) {
     let updatedTodos = this.state.todos.map((todo)=>{
-      if(todo.id === id) todo.completed = !todo.completed;
+      if(todo.id === id) {
+        todo.completed = !todo.completed;
+        todo.completedAt = todo.completed?moment().unix():null;
+      }
 
       return todo;
     });
