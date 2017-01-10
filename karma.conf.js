@@ -8,9 +8,13 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.min.js',
       'app/tests/**/*.test.jsx',
-      'node_modules/foundation-sites/dist/foundation.min.js'
+      'app/tests/**/*.test.js',
+      'node_modules/foundation-sites/dist/js/foundation.js'
     ],
-    preprocessors: {'app/tests/**/*.test.jsx': ['webpack', 'sourcemap']},
+    preprocessors: {
+      'app/tests/**/*.test.jsx': ['webpack', 'sourcemap'],
+      'app/tests/**/*.test.js': ['webpack', 'sourcemap']
+    },
     reporters: ['mocha'],
     client: {
       mocha: {
