@@ -40,7 +40,7 @@ class TodoApp extends React.Component {
     });
   }
   handleToggle(id) {
-    var updatedTodos = this.state.todos.map((todo)=>{
+    let updatedTodos = this.state.todos.map((todo)=>{
       if(todo.id === id) todo.completed = !todo.completed;
 
       return todo;
@@ -49,10 +49,12 @@ class TodoApp extends React.Component {
   }
 
   render() {
-    var {todos} = this.state;
+    let {todos, showCompleted, searchText} = this.state;
+    let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+
     return <div>
       <TodoSearch onSearch={this.searchListener}/>
-        <TodoList todos={todos} onToggle={this.toggleListener}/>
+        <TodoList todos={filteredTodos} onToggle={this.toggleListener}/>
         <AddTodo onAddTodo={this.addTodoListener}/>
       </div>
   }
