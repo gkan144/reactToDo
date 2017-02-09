@@ -3,7 +3,8 @@ var webpackConfig = require('./webpack.config');
 module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
-    singleRun: true,
+    autoWatch: true,
+    singleRun: false,
     frameworks: ['mocha'],
     files: [
       'node_modules/jquery/dist/jquery.min.js',
