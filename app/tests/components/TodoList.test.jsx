@@ -4,7 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import $ from 'jQuery';
 
-import TodoList from "../../components/TodoList";
+import ConnectedTodoList, {TodoList} from "../../components/TodoList";
 import Todo from "../../components/Todo";
 
 describe('TodoList', ()=>{

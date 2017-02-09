@@ -19,7 +19,6 @@ class TodoApp extends React.Component {
     };
     this.addTodoListener = this.handleAddTodo.bind(this);
     this.searchListener = this.handleSearch.bind(this);
-    this.toggleListener = this.handleToggle.bind(this);
   }
 
   componentDidUpdate() {
@@ -46,17 +45,6 @@ class TodoApp extends React.Component {
       searchText: searchText.toLowerCase()
     });
   }
-  handleToggle(id) {
-    let updatedTodos = this.state.todos.map((todo)=>{
-      if(todo.id === id) {
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed?moment().unix():null;
-      }
-
-      return todo;
-    });
-    this.setState({todos: updatedTodos});
-  }
 
   render() {
     let {todos, showCompleted, searchText} = this.state;
@@ -68,7 +56,7 @@ class TodoApp extends React.Component {
         <div className="column small-centered small-11 medium-6 large-5">
           <div className="container">
             <TodoSearch onSearch={this.searchListener}/>
-            <TodoList todos={filteredTodos} onToggle={this.toggleListener}/>
+            <TodoList />
             <AddTodo onAddTodo={this.addTodoListener}/>
           </div>
         </div>
