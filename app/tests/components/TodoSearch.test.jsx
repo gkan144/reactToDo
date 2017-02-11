@@ -1,36 +1,48 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
-import $ from 'jQuery';
 
-import TodoSearch from "../../components/TodoSearch";
+import {TodoSearch} from "../../components/TodoSearch";
 
 describe('TodoSearch', ()=>{
   it('should exist', ()=>{
     expect(TodoSearch).toExist();
   });
 
-  it('should call onSearch prop with entered input text', () => {
-    var searchText = 'Dog';
+  it('should dispatch SET_SEARCH_TEXT on input change', () => {
+    let searchText = 'Dog';
+    let action = {
+      type: 'SET_SEARCH_TEXT',
+      searchText
+    };
 
-    var spy = expect.createSpy();
-    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    let spy = expect.createSpy();
+    let todoSearch = TestUtils.renderIntoDocument(<TodoSearch dispatch={spy}/>);
+    let searchTextInput = TestUtils.scryRenderedDOMComponentsWithTag(todoSearch, 'input')
+      .filter(inputElement=> inputElement.type === "search")[0];
 
-    todoSearch.refs.searchText.value = searchText;
+    expect(searchTextInput).toExist();
 
-    TestUtils.Simulate.change(todoSearch.refs.searchText);
-    expect(spy).toHaveBeenCalledWith(false, searchText);
+    searchTextInput.value = searchText;
+    TestUtils.Simulate.change(searchTextInput);
+
+    expect(spy).toHaveBeenCalledWith(action);
   });
 
-  it('should call onSearch prop with proper checked value', () => {
+  it('should dispatch TOGGLE_SHOW_COMPLETED when checkbox is clicked', () => {
+    let action = {
+      type: 'TOGGLE_SHOW_COMPLETED'
+    };
 
-    var spy = expect.createSpy();
-    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    let spy = expect.createSpy();
+    let todoSearch = TestUtils.renderIntoDocument(<TodoSearch dispatch={spy}/>);
+    let showCompletedInput = TestUtils.scryRenderedDOMComponentsWithTag(todoSearch, 'input')
+      .filter(inputElement=> inputElement.type === "checkbox")[0];
 
-    todoSearch.refs.showCompleted.checked = true;
+    expect(showCompletedInput).toExist();
 
-    TestUtils.Simulate.change(todoSearch.refs.showCompleted);
-    expect(spy).toHaveBeenCalledWith(true, '');
+    TestUtils.Simulate.change(showCompletedInput);
+
+    expect(spy).toHaveBeenCalledWith(action);
   });
 });

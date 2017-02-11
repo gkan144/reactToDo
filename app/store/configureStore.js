@@ -1,4 +1,4 @@
-import {createStore, combineReducers, compose} from 'redux';
+import {createStore, combineReducers} from 'redux';
 import reducers from '../reducers/reducers';
 
 let configureStore = (initialState = {}) => {
@@ -8,9 +8,7 @@ let configureStore = (initialState = {}) => {
     todos: reducers.todosReducer
   });
 
-  return createStore(reducer, initialState, compose(
-    window.devToolsExtension ? window.devToolsExtension : f => f
-  ))
+  return createStore(reducer, initialState);
 };
 
 export default configureStore;
