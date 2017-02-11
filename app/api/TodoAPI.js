@@ -10,7 +10,7 @@ export default {
     try {
       todos = JSON.parse(localStorage.getItem('todos'));
     } catch(e) {
-
+      console.error(e);
     }
     return Array.isArray(todos)?todos:[];
   },

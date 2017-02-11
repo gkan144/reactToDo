@@ -12,6 +12,13 @@ let addTodo = (text) => {
   };
 };
 
+let addTodos = (todos) => {
+  return {
+    type: 'ADD_TODOS',
+    todos
+  };
+};
+
 let toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
@@ -28,6 +35,7 @@ let toggleTodo = (id) => {
 export default {
   setSearchText,
   addTodo,
+  addTodos,
   toggleShowCompleted,
   toggleTodo
 }

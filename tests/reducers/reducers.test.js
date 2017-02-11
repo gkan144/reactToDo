@@ -43,6 +43,24 @@ describe('Reducers', () => {
       expect(response[0].text).toEqual(action.text);
     });
 
+    it('should add existing todos', () => {
+      let action = {
+        type: 'ADD_TODOS',
+        todos: [{
+          id: '111',
+          text: 'anything',
+          completed: false,
+          completedAt: null,
+          createdAt: 100
+        }],
+      };
+
+      let response = reducers.todosReducer([], action);
+
+      expect(response.length).toEqual(1);
+      expect(response).toEqual(action.todos);
+    });
+
     it('should toggle todo complete todo', () => {
 
       let todos = [{
