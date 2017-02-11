@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import reducers from '../../reducers/reducers';
+import reducers from '../../app/reducers/reducers';
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {

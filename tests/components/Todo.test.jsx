@@ -4,7 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import $ from 'jQuery';
 
-import {Todo} from "../../components/Todo";
+import {Todo} from "../../app/components/Todo";
 
 describe('Todo', ()=>{
   it('should exist', ()=>{
