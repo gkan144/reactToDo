@@ -1,19 +1,4 @@
 export default {
-  setTodos: (todos) => {
-    if(Array.isArray(todos)) {
-      localStorage.setItem('todos', JSON.stringify(todos));
-      return todos;
-    }
-  },
-  getTodos: ()=>{
-    let todos = [];
-    try {
-      todos = JSON.parse(localStorage.getItem('todos'));
-    } catch(e) {
-      console.error(e);
-    }
-    return Array.isArray(todos)?todos:[];
-  },
   filterTodos: (todos, showCompleted, searchText)=>{
     let filteredTodos = todos;
 

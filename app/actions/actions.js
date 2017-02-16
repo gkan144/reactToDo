@@ -38,6 +38,23 @@ let startAddTodo = (text) => {
   }
 };
 
+let startAddTodos = () => {
+  return (dispatch) => {
+    return firebaseRef.child('todos').once('value').then((snapshot) => {
+      let todos = snapshot.val() || {};
+
+      let parsedTodos = Object.keys(todos).map((key) => {
+        return {
+          id: key,
+          ...todos[key]
+        }
+      });
+
+      dispatch(addTodos(parsedTodos));
+    });
+  }
+};
+
 let toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
@@ -71,6 +88,7 @@ export default {
   addTodo,
   addTodos,
   startAddTodo,
+  startAddTodos,
   toggleShowCompleted,
   updateTodo,
   startToggleTodo

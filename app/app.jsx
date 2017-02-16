@@ -3,23 +3,13 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
 import actions from 'app/actions/actions';
+import configureStore from 'app/store/configureStore';
 
 import TodoApp from 'app/components/TodoApp';
-import TodoAPI from 'app/api/TodoAPI';
-
-import configureStore from 'app/store/configureStore';
 
 let store = configureStore();
 
-store.subscribe(() => {
-  let state = store.getState();
-  console.log('New state', state);
-
-  TodoAPI.setTodos(state.todos);
-});
-
-let initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 require('style!css!sass!./styles/app.scss');
