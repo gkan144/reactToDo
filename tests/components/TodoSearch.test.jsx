@@ -2,7 +2,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 
-import {TodoSearch} from "../../app/components/TodoSearch";
+import {TodoSearch} from "app/components/TodoSearch";
 
 describe('TodoSearch', ()=>{
   it('should exist', ()=>{

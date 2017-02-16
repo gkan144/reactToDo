@@ -24,6 +24,9 @@ module.exports = {
     root: __dirname,
     extensions: ['','.js','.jsx']
   },
+  alias: {
+    app: 'app'
+  },
   module: {
     loaders: [
       {

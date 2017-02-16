@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Todo from './Todo';
-import TodoAPI from '../api/TodoAPI';
+import Todo from 'app/components/Todo';
+import TodoAPI from 'app/api/TodoAPI';
 
 export class TodoList extends React.Component {
 

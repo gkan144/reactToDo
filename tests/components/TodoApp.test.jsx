@@ -3,10 +3,10 @@ import {Provider} from 'react-redux';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 
-import TodoApp from "../../app/components/TodoApp";
-import TodoList from "../../app/components/TodoList";
+import TodoApp from "app/components/TodoApp";
+import TodoList from "app/components/TodoList";
 
-import configureStore from '../../app/store/configureStore';
+import configureStore from 'app/store/configureStore';
 
 describe('TodoApp', ()=>{
   it('should exist', ()=>{

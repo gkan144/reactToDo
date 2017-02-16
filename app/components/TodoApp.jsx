@@ -1,8 +1,8 @@
 import React from 'react';
 
-import TodoList from './TodoList';
-import AddTodo from './AddTodo';
-import TodoSearch from './TodoSearch';
+import TodoList from 'app/components/TodoList';
+import AddTodo from 'app/components/AddTodo';
+import TodoSearch from 'app/components/TodoSearch';
 
 class TodoApp extends React.Component {
 

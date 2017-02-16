@@ -2,12 +2,12 @@ import React    from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import actions from './actions/actions';
+import actions from 'app/actions/actions';
 
-import TodoApp from './components/TodoApp';
-import TodoAPI from './api/TodoAPI';
+import TodoApp from 'app/components/TodoApp';
+import TodoAPI from 'app/api/TodoAPI';
 
-import configureStore from './store/configureStore';
+import configureStore from 'app/store/configureStore';
 
 let store = configureStore();
 

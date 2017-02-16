@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 
-import actions from '../actions/actions'
+import actions from 'app/actions/actions'
 
 export class Todo extends React.Component {
 

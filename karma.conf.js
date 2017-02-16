@@ -2,7 +2,7 @@ var webpackConfig = require('./webpack.config');
 
 module.exports = function(config) {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     autoWatch: true,
     singleRun: false,
     frameworks: ['mocha'],
