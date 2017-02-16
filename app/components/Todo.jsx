@@ -12,7 +12,7 @@ export class Todo extends React.Component {
 
     return <div className={todoClassName} >
       <div>
-        <input type="checkbox" defaultChecked={completed} onClick={()=>{ dispatch(actions.toggleTodo(id)); }}/>
+        <input type="checkbox" defaultChecked={completed} onClick={()=>{ dispatch(actions.startToggleTodo(id, !completed)); }}/>
       </div>
       <div>
         <p>{`${text}`}</p>
