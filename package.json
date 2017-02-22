@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm build && node server.js",
+    "start": "npm run build && node server.js",
     "build": "./node_modules/.bin/webpack",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
     "win-build": ".\\node_modules\\.bin\\webpack",
