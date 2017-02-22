@@ -3,11 +3,11 @@ let path = require("path");
 let env = require('node-env-file');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
+console.log('env: ',process.env.NODE_ENV);
 try {
   env(path.join(__dirname,'app', 'config', `${process.env.NODE_ENV}.env`), {verbose: process.env.NODE_ENV==='development'});
 } catch (e) {
-  console.error(e);
+
 }
 
 let config = {
