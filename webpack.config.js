@@ -6,7 +6,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 try {
   env(path.join(__dirname,'app', 'config', `${process.env.NODE_ENV}.env`), {verbose: process.env.NODE_ENV==='development'});
 } catch (e) {
-  console.error(e);
+  if(process.env.NODE_ENV !== 'production') console.error(e);
 }
 
 let config = {
@@ -72,5 +72,4 @@ if(process.env.NODE_ENV==='production') {
     }
   }));
 }
-console.log('config:', config);
 module.exports = config;

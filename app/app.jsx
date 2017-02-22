@@ -12,7 +12,7 @@ let store = configureStore();
 store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
-console.log(process.cwd());
+
 require('style!css!sass!app/styles/app.scss');
 
 ReactDOM.render(<Provider store={store}>
