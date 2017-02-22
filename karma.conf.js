@@ -3,8 +3,8 @@ var webpackConfig = require('./webpack.config');
 module.exports = function(config) {
   config.set({
     browsers: ['Chrome'],
-    autoWatch: true,
-    singleRun: false,
+    autoWatch: false,
+    singleRun: true,
     frameworks: ['mocha'],
     files: [
       'node_modules/jquery/dist/jquery.min.js',
@@ -19,7 +19,7 @@ module.exports = function(config) {
     reporters: ['mocha'],
     client: {
       mocha: {
-        timeout: '5000'
+        timeout: '10000'
       }
     },
     webpack: webpackConfig,

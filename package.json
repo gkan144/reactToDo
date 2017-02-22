@@ -7,7 +7,7 @@
     "start": "yarn run build && node server.js",
     "build": "./node_modules/.bin/webpack",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
-    "win-build": ".\\node_modules\\.bin\\webpack -p",
+    "win-build": ".\\node_modules\\.bin\\webpack",
     "win-test": ".\\node_modules\\.bin\\karma start"
   },
   "repository": {
@@ -35,6 +35,7 @@
     "foundation-sites": "^6.2.3",
     "jquery": "^2.2.4",
     "moment": "^2.17.1",
+    "node-env-file": "^0.1.8",
     "node-sass": "^3.10.1",
     "node-uuid": "^1.4.7",
     "react": "^15.4.2",

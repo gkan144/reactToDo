@@ -1,9 +1,16 @@
 let webpack = require("webpack");
 let path = require("path");
+let env = require('node-env-file');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-module.exports = {
+try {
+  env(path.join(__dirname,'app', 'config', `${process.env.NODE_ENV}.env`), {verbose: process.env.NODE_ENV==='development'});
+} catch (e) {
+  console.error(e);
+}
+
+let config = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!foundation-sites/dist/js/foundation.js',
@@ -17,9 +24,13 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID)
       }
     })
   ],
@@ -54,3 +65,13 @@ module.exports = {
   },
   devtool: process.env.NODE_ENV === 'production'?undefined:'source-map'
 };
+
+if(process.env.NODE_ENV==='production') {
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compressor: {
+      warnings: false
+    }
+  }));
+}
+
+module.exports = config;
