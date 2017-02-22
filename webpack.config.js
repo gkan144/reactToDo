@@ -4,7 +4,7 @@ let env = require('node-env-file');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 try {
-  env(path.join(__dirname,'app', 'config', `${process.env.NODE_ENV}.env`), {verbose: process.env.NODE_ENV==='development'});
+  env(path.join(__dirname, 'config', `${process.env.NODE_ENV}.env`), {verbose: process.env.NODE_ENV==='development'});
 } catch (e) {
   if(process.env.NODE_ENV !== 'production') console.error(e);
 }
