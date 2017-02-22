@@ -12,7 +12,8 @@ let store = configureStore();
 store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
-require('style!css!sass!./styles/app.scss');
+console.log(process.cwd());
+require('style!css!sass!app/styles/app.scss');
 
 ReactDOM.render(<Provider store={store}>
                   <TodoApp />
