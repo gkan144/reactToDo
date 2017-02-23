@@ -1,5 +1,5 @@
 import moment from 'moment';
-import firebase, {firebaseRef} from 'app/firebase/';
+import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 
 let setSearchText = (searchText) => {
   return {
@@ -83,6 +83,29 @@ let startToggleTodo = (id, completed) => {
   }
 };
 
+let startLogin = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signInWithPopup(githubProvider)
+      .then((result) =>{
+        console.log('login: ',result);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+};
+let startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut()
+      .then(() =>{
+        console.log('Logout');
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+};
+
 export default {
   setSearchText,
   addTodo,
@@ -91,5 +114,7 @@ export default {
   startAddTodos,
   toggleShowCompleted,
   updateTodo,
-  startToggleTodo
+  startToggleTodo,
+  startLogin,
+  startLogout
 }
