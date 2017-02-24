@@ -5,13 +5,7 @@ import firebase from 'app/firebase/';
 import TodoApp from 'app/components/TodoApp';
 import Login from 'app/components/Login';
 
-firebase.auth().onAuthStateChanged((user) => {
-  if(user) {
-    hashHistory.push('/todos');
-  } else {
-    if(hashHistory.getCurrentLocation().pathname !== '/') hashHistory.push('/');
-  }
-});
+
 
 let requireLogin = (nextState, replace, next) => {
   if(!firebase.auth().currentUser) {

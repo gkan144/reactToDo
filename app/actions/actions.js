@@ -23,14 +23,15 @@ let addTodos = (todos) => {
 };
 
 let startAddTodo = (text) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     let todo = {
       text: text,
       completed: false,
       createdAt: moment().unix(),
       completedAt: null
     };
-    let todoRef = firebaseRef.child('todos').push(todo);
+    let uid = getState().auth.uid;
+    let todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
     return todoRef.then(() => {dispatch(addTodo({
       id: todoRef.key,
       ...todo
@@ -39,8 +40,9 @@ let startAddTodo = (text) => {
 };
 
 let startAddTodos = () => {
-  return (dispatch) => {
-    return firebaseRef.child('todos').once('value').then((snapshot) => {
+  return (dispatch, getState) => {
+    let uid = getState().auth.uid;
+    return firebaseRef.child(`users/${uid}/todos`).once('value').then((snapshot) => {
       let todos = snapshot.val() || {};
 
       let parsedTodos = Object.keys(todos).map((key) => {
@@ -71,7 +73,8 @@ let updateTodo = (id, updates) => {
 
 let startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
-    let todoRef = firebaseRef.child(`todos/${id}`);
+    let uid = getState().auth.uid;
+    let todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
     let updates = {
       completed,
       completedAt: completed?moment().unix():null
@@ -83,22 +86,36 @@ let startToggleTodo = (id, completed) => {
   }
 };
 
+let login = (uid) => {
+  return {
+    type: 'LOGIN',
+    uid
+  }
+};
+
 let startLogin = () => {
   return (dispatch, getState) => {
     return firebase.auth().signInWithPopup(githubProvider)
       .then((result) =>{
-        console.log('login: ',result);
+        dispatch(login(result.user.uid));
       })
       .catch((error) => {
         console.error(error);
       })
   }
 };
+
+let logout = () => {
+  return {
+    type: 'LOGOUT'
+  }
+};
+
 let startLogout = () => {
   return (dispatch, getState) => {
     return firebase.auth().signOut()
       .then(() =>{
-        console.log('Logout');
+        dispatch(logout());
       })
       .catch((error) => {
         console.error(error);
@@ -115,6 +132,8 @@ export default {
   toggleShowCompleted,
   updateTodo,
   startToggleTodo,
+  login,
   startLogin,
+  logout,
   startLogout
 }

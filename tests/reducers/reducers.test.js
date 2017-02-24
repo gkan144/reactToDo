@@ -94,5 +94,29 @@ describe('Reducers', () => {
       expect(response[0].completedAt).toEqual(null);
       expect(response[0].text).toEqual(todos[0].text);
     });
+
+    describe('authReducer', function() {
+      it('should store uid on login', function() {
+        const action = {
+          type: 'LOGIN',
+          uid: 'abc123'
+        };
+
+        let response = reducers.authReducer(undefined, action);
+        expect(response).toEqual({uid: action.uid});
+      });
+
+      it('should wipe uid on logout', function() {
+        const authData = {
+          uid: '123456'
+        };
+        const action = {
+          type: 'LOGOUT'
+        };
+
+        let response = reducers.authReducer(authData, action);
+        expect(response).toEqual({});
+      });
+    });
   });
 });

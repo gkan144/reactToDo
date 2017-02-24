@@ -6,7 +6,8 @@ let configureStore = (initialState = {}) => {
   let reducer = redux.combineReducers({
     searchText: reducers.searchTextReducer,
     showCompleted: reducers.showCompletedReducer,
-    todos: reducers.todosReducer
+    todos: reducers.todosReducer,
+    auth: reducers.authReducer
   });
 
   return redux.createStore(reducer, initialState, redux.compose(
